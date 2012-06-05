@@ -1,4 +1,4 @@
-describe "Application 'ParseCrudExample'" do
+describe "Application" do
   before do
     @app = UIApplication.sharedApplication
   end

@@ -2,7 +2,7 @@ $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project'
 
 Motion::Project::App.setup do |app|
-  app.name = 'ParseCrudExample'
+  app.name = 'Parse Example'
   app.files_dependencies 'app/controllers/widgets_controller.rb' => 'app/lib/parse_table_view_controller.rb'
 
   ## -- Parse ## 
