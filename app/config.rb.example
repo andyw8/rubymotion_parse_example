@@ -1,0 +1,4 @@
+module Config
+  APP_ID = "..."
+  CLIENT_KEY = "..."
+end
