@@ -4,4 +4,4 @@ resources/*.nib
 resources/*.momd
 resources/*.storyboardc
 app/config.rb
-vendor
+vendor/*
