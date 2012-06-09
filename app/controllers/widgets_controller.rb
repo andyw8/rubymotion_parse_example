@@ -32,7 +32,7 @@ class WidgetsController < UITableViewController
       WidgetStore.shared_store.expire_cache
       self.tableView.reloadData
     end
-    empty_block = lambda {} #needed to avoid crash?
+    empty_block = lambda {} # TODO needed to avoid crash, but why?
     self.presentViewController(controller, animated:true, completion:empty_block)
   end
 
