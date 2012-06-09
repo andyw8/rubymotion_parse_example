@@ -15,13 +15,13 @@ class ParseTableViewController < UITableViewController
   end
 
   def addItem
-    controller = AddWidgetController.alloc.init
+    controller = WidgetDetailController.alloc.init
     completion = lambda {}
     self.presentViewController(controller, animated:true, completion:completion)
   end
 
   def editItem(item)
-    controller = AddWidgetController.alloc.init
+    controller = WidgetDetailController.alloc.init
     controller.item = item
     completion = lambda {}
     self.presentViewController(controller, animated:true, completion:completion)

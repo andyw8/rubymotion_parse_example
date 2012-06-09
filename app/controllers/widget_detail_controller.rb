@@ -1,5 +1,4 @@
-class AddWidgetController < UIViewController
-
+class WidgetDetailController < UIViewController
   attr_writer :item
 
   def parse_object_class
@@ -7,7 +6,7 @@ class AddWidgetController < UIViewController
   end
 
   def loadView
-    self.view = AddWidgetView.alloc.init
+    self.view = WidgetDetailView.alloc.init
     self.view.backgroundColor = UIColor.groupTableViewBackgroundColor
     self.title = "New #{parse_object_class.name}"
   end

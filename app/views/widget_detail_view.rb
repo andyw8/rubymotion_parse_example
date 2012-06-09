@@ -1,4 +1,4 @@
-class AddWidgetView < UIView
+class WidgetDetailView < UIView
   def drawRect(rect)
     name_text_field = UITextField.alloc.initWithFrame([[20, 80], [280,30]])
     name_text_field.text = "hello world"
