@@ -19,8 +19,7 @@ class ParseObject
   end
 
   def self.item_at_index(index)
-    # TODO fix
-    WidgetStore.shared_store.all[index]
+    store.all[index]
   end
 
   def name
@@ -44,6 +43,10 @@ class ParseObject
     parse_object = new
     parse_object.object = object
     parse_object
+  end
+
+  def self.expire_cache
+    store.expire_cache
   end
 
   private

@@ -29,7 +29,7 @@ class WidgetsController < UITableViewController
   def addItem
     controller = WidgetDetailController.alloc.init
     controller.dismiss_block = lambda do
-      WidgetStore.shared_store.expire_cache
+      Widget.expire_cache
       self.tableView.reloadData
     end
     empty_block = lambda {} # TODO needed to avoid crash, but why?

@@ -1,5 +1,5 @@
 class Widget < ParseObject
-  def store
-    WidgetStore
+  def self.store
+    WidgetStore.shared_store
   end
 end
