@@ -16,7 +16,8 @@ class ParseTableViewController < UITableViewController
 
   def addItem
     controller = AddWidgetController.alloc.init
-    self.presentViewController(controller, animated:true, completion:nil)
+    completion = lambda {}
+    self.presentViewController(controller, animated:true, completion:completion)
   end
 
   def reuseable_cell(cell_id=nil)
