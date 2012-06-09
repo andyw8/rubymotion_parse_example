@@ -1,4 +1,7 @@
 class AddWidgetController < UIViewController
+
+  attr_writer :item
+
   def parse_object_class
     Widget
   end

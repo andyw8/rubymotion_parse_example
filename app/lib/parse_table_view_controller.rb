@@ -20,6 +20,13 @@ class ParseTableViewController < UITableViewController
     self.presentViewController(controller, animated:true, completion:completion)
   end
 
+  def editItem(item)
+    controller = AddWidgetController.alloc.init
+    controller.item = item
+    completion = lambda {}
+    self.presentViewController(controller, animated:true, completion:completion)
+  end
+
   def reuseable_cell(cell_id=nil)
     cell_id ||= self.class.name
     tableView.dequeueReusableCellWithIdentifier(cell_id) || UITableViewCell.alloc.initWithStyle(UITableViewCellStyleSubtitle, reuseIdentifier:cell_id)

@@ -14,5 +14,6 @@ class WidgetsController < ParseTableViewController
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
     selected_item = data_source.item_at_index(indexPath.row)
     puts "selected! #{selected_item}"
+    editItem selected_item
   end
 end
