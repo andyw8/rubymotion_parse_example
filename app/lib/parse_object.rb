@@ -39,6 +39,10 @@ class ParseObject
     object
   end
 
+  def self.item_at_index(index)
+    all[index]
+  end
+
   def self.all
     @all ||= begin
       query = PFQuery.queryWithClassName(self.parse_class_name)

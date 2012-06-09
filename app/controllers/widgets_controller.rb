@@ -10,4 +10,9 @@ class WidgetsController < ParseTableViewController
     cell.detailTextLabel.text = item.created_at.to_s
     cell
   end
+
+  def tableView(tableView, didSelectRowAtIndexPath:indexPath)
+    selected_item = data_source.item_at_index(indexPath.row)
+    puts "selected! #{selected_item}"
+  end
 end
