@@ -58,4 +58,9 @@ class ParseObject
   def updated_at
     @object.updatedAt
   end
+
+  def to_s
+    "#<#{self.class.name} object_id:#{object_id}>"
+  end
 end
+
