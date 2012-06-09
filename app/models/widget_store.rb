@@ -1,5 +1,5 @@
 class WidgetStore < ParseObjectStore
-  def parse_class
+  def item_class
     Widget
   end
 end

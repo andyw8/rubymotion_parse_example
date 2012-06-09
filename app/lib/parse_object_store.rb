@@ -1,6 +1,4 @@
 class ParseObjectStore
-  #include Singleton
-
   attr_reader :items
 
   def self.shared_store
@@ -17,9 +15,9 @@ class ParseObjectStore
 
   def all
     @all ||= begin
-      query = PFQuery.queryWithClassName('Widget') # parse_class.name
+      query = PFQuery.queryWithClassName(item_class.name)
       result = query.findObjects
-      result.map {|r| Widget.instantiate(r) } # TODO parse_class
+      result.map {|r| item_class.instantiate(r) } # TODO parse_class
     end
   end
 
@@ -28,7 +26,7 @@ class ParseObjectStore
   end
 
   def create(params)
-    object = parse_class.new
+    object = item_class.new
     params.map { |key, value| object[key] = value }
     object.save
     object
@@ -40,7 +38,7 @@ class ParseObjectStore
 
   private
 
-  def parse_class
+  def item_class
     raise "Abstract method called"
   end
 
