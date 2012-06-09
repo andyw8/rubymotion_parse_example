@@ -1,5 +1,9 @@
 class Widget < ParseObject
   def name
-    @object['foo']
+    @object['name']
+  end
+
+  def store
+    WidgetStore
   end
 end

@@ -1,7 +1,7 @@
 class WidgetsController < UITableViewController
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
     cell = reuseable_cell
-    item = Widget.all[indexPath.row]
+    item = Widget.item_at_index(indexPath.row)
     cell.textLabel.text = item.name
     cell.detailTextLabel.text = item.created_at.to_s
     cell
@@ -9,32 +9,42 @@ class WidgetsController < UITableViewController
 
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
     selected_item = Widget.item_at_index(indexPath.row)
-    puts "selected! #{selected_item}"
     viewItem selected_item
+  end
+
+  def tableView(tableView, commitEditingStyle:editingStyle, forRowAtIndexPath:indexPath)
+    WidgetStore.delete_item_at_index indexPath.row
   end
 
   def viewDidLoad
     self.title = "Wigets"
-    action = 'add'
     navigationItem.rightBarButtonItem = addButtonItem
     self.navigationItem.leftBarButtonItem = self.editButtonItem
   end
 
   def tableView(tableView, numberOfRowsInSection:section)
-    Widget.count
+    store.count
   end
 
   def addItem
     controller = WidgetDetailController.alloc.init
-    completion = lambda {}
-    self.presentViewController(controller, animated:true, completion:completion)
+    controller.dismiss_block = lambda do
+      WidgetStore.shared_store.expire_cache
+      self.tableView.reloadData
+    end
+    empty_block = lambda {} #needed to avoid crash?
+    self.presentViewController(controller, animated:true, completion:empty_block)
   end
 
   def viewItem(item)
     controller = WidgetDetailController.alloc.init
     controller.item = item
-    completion = lambda {}
-    self.presentViewController(controller, animated:true, completion:completion)
+    # TODO does this need to be an ivar?
+    @completion = lambda do
+      # TODO
+    end
+    controller.dismiss_block = @completion
+    self.presentViewController(controller, animated:true, completion:@completion)
   end
 
   private
@@ -47,5 +57,9 @@ class WidgetsController < UITableViewController
   def reuseable_cell(cell_id=nil)
     cell_id ||= self.class.name
     tableView.dequeueReusableCellWithIdentifier(cell_id) || UITableViewCell.alloc.initWithStyle(UITableViewCellStyleSubtitle, reuseIdentifier:cell_id)
+  end
+
+  def store
+    WidgetStore.shared_store
   end
 end
