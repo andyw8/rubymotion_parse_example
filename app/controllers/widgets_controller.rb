@@ -32,19 +32,14 @@ class WidgetsController < UITableViewController
       Widget.expire_cache
       self.tableView.reloadData
     end
-    empty_block = lambda {} # TODO needed to avoid crash, but why?
-    self.presentViewController(controller, animated:true, completion:empty_block)
+    self.presentViewController(controller, animated:true, completion:lambda {})
   end
 
   def viewItem(item)
     controller = WidgetDetailController.alloc.init
     controller.item = item
-    # TODO does this need to be an ivar?
-    @completion = lambda do
-      # TODO
-    end
     controller.dismiss_block = @completion
-    self.presentViewController(controller, animated:true, completion:@completion)
+    self.presentViewController(controller, animated:true, completion:lambda {})
   end
 
   private
