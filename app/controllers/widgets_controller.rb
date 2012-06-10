@@ -19,7 +19,7 @@ class WidgetsController < UITableViewController
   def viewDidLoad
     self.title = "Wigets"
     navigationItem.rightBarButtonItem = addButtonItem
-    self.navigationItem.leftBarButtonItem = self.editButtonItem
+    navigationItem.leftBarButtonItem = self.editButtonItem
   end
 
   def tableView(tableView, numberOfRowsInSection:section)
