@@ -27,7 +27,10 @@ class ParseObjectStore
 
   def create(params)
     object = item_class.new
-    params.map { |key, value| object[key] = value }
+    params.map do |key, value|
+      value = NSNull if value.nil?
+      object[key] = value
+    end
     object.save
     object
   end

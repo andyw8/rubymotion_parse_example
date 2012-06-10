@@ -23,7 +23,13 @@ class ParseObject
   end
 
   def name
-    @object['name'] || @object['title'] || 'Untitled'
+    if @object['name'] && @object['name'] != ''
+      @object['name']
+    elsif @object['title'] && @object['title'] != ''
+      @object['title']
+    else
+      'Untitled'
+    end
   end
 
   def created_at
