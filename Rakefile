@@ -3,6 +3,7 @@ require 'motion/project'
 
 Motion::Project::App.setup do |app|
   app.name = 'Parse Example'
+  app.files_dependencies 'app/controllers/widget_detail_controller.rb' => 'app/lib/buttons.rb'
 
   ## -- Parse ## 
 
