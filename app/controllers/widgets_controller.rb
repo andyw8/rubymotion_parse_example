@@ -38,7 +38,10 @@ class WidgetsController < UITableViewController
   def viewItem(item)
     controller = WidgetDetailController.alloc.init
     controller.item = item
-    controller.dismiss_block = @completion
+    controller.dismiss_block = lambda do
+      Widget.expire_cache
+      self.tableView.reloadData
+    end
     self.presentViewController(controller, animated:true, completion:lambda {})
   end
 

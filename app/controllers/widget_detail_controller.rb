@@ -28,7 +28,12 @@ class WidgetDetailController < UIViewController
   end
 
   def done_action
-    WidgetStore.shared_store.create('name' => @detail_view.name_text_field.text)
+    if @item
+      @item.name = @detail_view.name_text_field.text
+      @item.save
+    else
+      store.create('name' => @detail_view.name_text_field.text)
+    end
     dismissViewControllerAnimated(true, completion:@dismiss_block)
   end
 
@@ -71,5 +76,11 @@ class WidgetDetailController < UIViewController
   def viewDidLoad
     done_button.enabled = false
     @detail_view.name_text_field.addTarget(self, action:'textFieldDidChange:', forControlEvents:UIControlEventEditingChanged)
+  end
+
+  private
+
+  def store
+    WidgetStore.shared_store
   end
 end
