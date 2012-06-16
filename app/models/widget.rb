@@ -8,10 +8,6 @@ class Widget < ParseObject
     @object['name'] = name
   end
 
-  def save
-    @object.save
-  end
-
   def delete
     @object.delete
   end
