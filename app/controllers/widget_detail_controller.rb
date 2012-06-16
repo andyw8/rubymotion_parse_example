@@ -11,16 +11,10 @@ class WidgetDetailController < UIViewController
   def loadView
     # Based on code from http://cps.liridesce.com/?p=100
     super
-
     set_buttons
     add_nav_bar
     add_detail_view
-
-    if @item
-      self.title = "Edit Widget"
-    else
-      self.title = "New Widget"
-    end
+    set_title
   end
 
   def cancel_action
@@ -39,6 +33,11 @@ class WidgetDetailController < UIViewController
 
   private
 
+  def set_buttons
+    self.navigationItem.setRightBarButtonItem done_button
+    self.navigationItem.setLeftBarButtonItem cancel_button
+  end
+
   def add_nav_bar
     frame = self.view.bounds
     @nav_bar = UINavigationBar.alloc.initWithFrame(frame)
@@ -47,11 +46,6 @@ class WidgetDetailController < UIViewController
     @nav_bar.autoresizingMask = UIViewAutoresizingFlexibleWidth
     @nav_bar.items = [self.navigationItem]
     self.view.addSubview(@nav_bar)
-  end
-
-  def set_buttons
-    self.navigationItem.setRightBarButtonItem done_button
-    self.navigationItem.setLeftBarButtonItem cancel_button
   end
 
   def add_detail_view
@@ -69,13 +63,22 @@ class WidgetDetailController < UIViewController
     self.view.addSubview @detail_view
   end
 
-  def textFieldDidChange(sender)
+  def name_field_changed(sender)
+    p "changed, sender: #{sender.inspect}"
     done_button.enabled = sender.text != ''
   end
 
   def viewDidLoad
     done_button.enabled = false
-    @detail_view.name_text_field.addTarget(self, action:'textFieldDidChange:', forControlEvents:UIControlEventEditingChanged)
+    @detail_view.name_text_field.addTarget(self, action:'name_field_changed:', forControlEvents:UIControlEventEditingChanged)
+  end
+
+  def set_title
+    if @item
+      self.title = "Edit Widget"
+    else
+      self.title = "New Widget"
+    end
   end
 
   private
