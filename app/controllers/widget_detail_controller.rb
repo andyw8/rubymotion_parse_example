@@ -63,13 +63,11 @@ class WidgetDetailController < UIViewController
     self.view.addSubview @detail_view
   end
 
-  def name_field_changed(sender)
-    done_button.enabled = sender.text != ''
-  end
-
   def viewDidLoad
     done_button.enabled = false
-    @detail_view.name_text_field.addTarget(self, action:'name_field_changed:', forControlEvents:UIControlEventEditingChanged)
+    @detail_view.name_text_field.when(UIControlEventEditingChanged) do
+      done_button.enabled = @detail_view.name_text_field.text != ''
+    end
   end
 
   def set_title
