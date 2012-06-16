@@ -1,4 +1,4 @@
 module Config
-  APP_ID = "..."
-  CLIENT_KEY = "..."
+  PARSE_APP_ID = "..."
+  PARSE_CLIENT_KEY = "..."
 end
