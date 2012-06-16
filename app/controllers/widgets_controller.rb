@@ -1,4 +1,6 @@
 class WidgetsController < UITableViewController
+  include SignupViewControllerDelegate
+
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
     cell = reuseable_cell
     item = Widget.item_at_index(indexPath.row)
@@ -26,6 +28,7 @@ class WidgetsController < UITableViewController
     self.title = "Wigets"
     navigationItem.rightBarButtonItem = addButtonItem
     navigationItem.leftBarButtonItem = self.editButtonItem
+    display_login_controller
   end
 
   def tableView(tableView, numberOfRowsInSection:section)
@@ -48,10 +51,27 @@ class WidgetsController < UITableViewController
       Widget.expire_cache
       self.tableView.reloadData
     end
-    self.presentViewController(controller, animated:true, completion:nil)
+    presentViewController(controller, animated:true, completion:nil)
   end
 
   private
+
+  def display_login_controller
+    options = PFLogInFieldsUsernameAndPassword |
+      PFLogInFieldsLogInButton |
+      PFLogInFieldsSignUpButton |
+      PFLogInFieldsPasswordForgotten |
+      PFLogInFieldsFacebook |
+      PFLogInFieldsTwitter |
+      PFLogInFieldsDismissButton
+
+    login_controller = PFLogInViewController.alloc.init.tap do |lc|
+      lc.delegate = self
+      lc.fields = options
+    end
+
+    presentViewController(login_controller, animated:true, completion:nil)
+  end
 
   def addButtonItem
     UIBarButtonItem.alloc.initWithBarButtonSystemItem(
