@@ -11,7 +11,13 @@ class ParseObject
   end
 
   def save
-    @object.save
+    block = lambda do |succeeded, error_pointer|
+      puts "succeeded: #{succeeded}"
+      if error_pointer
+        puts "error_pointer: #{error_pointer[0].inspect}"
+      end
+    end
+    @object.saveInBackgroundWithBlock(block)
   end
 
   def object_id
