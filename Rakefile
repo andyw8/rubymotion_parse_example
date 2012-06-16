@@ -1,5 +1,6 @@
 $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project'
+require 'bubble-wrap'
 
 Motion::Project::App.setup do |app|
   app.name = 'Parse Example'
