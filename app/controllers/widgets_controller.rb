@@ -32,7 +32,7 @@ class WidgetsController < UITableViewController
       Widget.expire_cache
       self.tableView.reloadData
     end
-    self.presentViewController(controller, animated:true, completion:lambda {})
+    self.presentViewController(controller, animated:true, completion:nil)
   end
 
   def viewItem(item)
@@ -42,7 +42,7 @@ class WidgetsController < UITableViewController
       Widget.expire_cache
       self.tableView.reloadData
     end
-    self.presentViewController(controller, animated:true, completion:lambda {})
+    self.presentViewController(controller, animated:true, completion:nil)
   end
 
   private

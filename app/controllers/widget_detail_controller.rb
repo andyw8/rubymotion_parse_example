@@ -24,7 +24,7 @@ class WidgetDetailController < UIViewController
   end
 
   def cancel_action
-    dismissViewControllerAnimated(true, completion:lambda {})
+    dismissViewControllerAnimated(true, completion:nil)
   end
 
   def done_action
