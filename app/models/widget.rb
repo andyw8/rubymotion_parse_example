@@ -11,4 +11,8 @@ class Widget < ParseObject
   def save
     @object.save
   end
+
+  def delete
+    @object.delete
+  end
 end

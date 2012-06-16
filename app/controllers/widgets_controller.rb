@@ -13,7 +13,13 @@ class WidgetsController < UITableViewController
   end
 
   def tableView(tableView, commitEditingStyle:editingStyle, forRowAtIndexPath:indexPath)
-    WidgetStore.delete_item_at_index indexPath.row
+    selected_item = Widget.item_at_index(indexPath.row)
+    if editingStyle == UITableViewCellEditingStyleDelete
+      selected_item.delete
+      Widget.expire_cache
+      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:UITableViewRowAnimationFade)
+      self.tableView.reloadData
+    end
   end
 
   def viewDidLoad
