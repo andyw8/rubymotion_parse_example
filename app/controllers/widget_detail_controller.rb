@@ -64,7 +64,6 @@ class WidgetDetailController < UIViewController
   end
 
   def name_field_changed(sender)
-    p "changed, sender: #{sender.inspect}"
     done_button.enabled = sender.text != ''
   end
 
