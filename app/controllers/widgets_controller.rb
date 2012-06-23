@@ -8,9 +8,7 @@ class WidgetsController < PFQueryTableViewController
   def initWithStyle(style)
     super.tap do |vc|
       vc.className = "Widget"
-      vc.textKey = "name"
       vc.pullToRefreshEnabled = true
-      vc.paginationEnabled = false
     end
   end
 
@@ -46,8 +44,9 @@ class WidgetsController < PFQueryTableViewController
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath, object:object)
-    reuseable_cell.tap do |cell|
+    reuseable_cell(:style => UITableViewCellStyleSubtitle).tap do |cell|
       cell.textLabel.text = object.objectForKey("name") # TODO reuse from above?
+      cell.detailTextLabel.text = object.createdAt.to_s
     end
   end
 end
