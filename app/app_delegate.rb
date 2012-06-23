@@ -5,7 +5,8 @@ class AppDelegate
     Parse.setApplicationId(Config::PARSE_APP_ID, clientKey:Config::PARSE_CLIENT_KEY)
     PFTwitterUtils.initializeWithConsumerKey(Config::TWITTER_CONSUMER_KEY,
       consumerSecret:Config::TWITTER_CONSUMER_SECRET)
-    @nav = UINavigationController.alloc.initWithRootViewController(WidgetsController.alloc.init)
+    root_view_controller = WidgetsController.alloc.initWithStyle(UITableViewStylePlain)
+    @nav = UINavigationController.alloc.initWithRootViewController(root_view_controller)
     @nav.wantsFullScreenLayout = true
     @nav.toolbarHidden = true
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)

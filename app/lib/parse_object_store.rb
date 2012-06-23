@@ -14,7 +14,7 @@ class ParseObjectStore
   end
 
   def all
-    @all ||= begin
+    begin
       query = PFQuery.queryWithClassName(item_class.name)
       result = query.findObjects
       result.map {|r| item_class.instantiate(r) } # TODO parse_class

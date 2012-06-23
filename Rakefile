@@ -5,7 +5,9 @@ require 'bubble-wrap'
 Motion::Project::App.setup do |app|
   app.name = 'Parse Example'
   app.files_dependencies 'app/controllers/widget_detail_controller.rb' => 'app/lib/buttons.rb'
-  app.files_dependencies 'app/controllers/widgets_controller.rb' => 'app/delegates/signup_view_controller_delegate.rb'
+  app.files_dependencies 'app/controllers/widgets_controller.rb' => ['app/lib/displays_login_controller.rb',
+    'app/delegates/signup_view_controller_delegate.rb',
+    'app/lib/controller_operations/add.rb', 'app/lib/controller_operations/show.rb']
 
   ## -- Parse ## 
 
