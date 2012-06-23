@@ -34,8 +34,7 @@ class WidgetsController < PFQueryTableViewController
 
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
     selected_object = self.objects[indexPath.row]
-    item = Widget.instantiate(selected_object)
-    show item
+    show Widget.instantiate(selected_object)
   end
 
   def detail_controller
