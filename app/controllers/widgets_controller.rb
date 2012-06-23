@@ -9,6 +9,7 @@ class WidgetsController < PFQueryTableViewController
     super.tap do |vc|
       vc.className = "Widget"
       vc.pullToRefreshEnabled = true
+      vc.paginationEnabled = false
     end
   end
 
@@ -32,7 +33,7 @@ class WidgetsController < PFQueryTableViewController
   end
 
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
-    show model_class.item_at_index(indexPath.row)
+    show self.objects[indexPath.row]
   end
 
   def detail_controller
