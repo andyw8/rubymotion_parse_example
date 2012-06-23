@@ -3,14 +3,15 @@ class WidgetsController < PFQueryTableViewController
   include DisplaysLoginController
   include ControllerOperations::Add
   include ControllerOperations::Show
+  include ReuseableCell
 
   def initWithStyle(style)
-    super
-    self.className = "Widget"
-    self.keyToDisplay = "name"
-    self.pullToRefreshEnabled = true
-    self.paginationEnabled = false
-    self
+    super.tap do |vc|
+      vc.className = "Widget"
+      vc.textKey = "name"
+      vc.pullToRefreshEnabled = true
+      vc.paginationEnabled = false
+    end
   end
 
   def viewDidLoad
@@ -44,4 +45,9 @@ class WidgetsController < PFQueryTableViewController
     Widget
   end
 
+  def tableView(tableView, cellForRowAtIndexPath:indexPath, object:object)
+    reuseable_cell.tap do |cell|
+      cell.textLabel.text = object.objectForKey("name") # TODO reuse from above?
+    end
+  end
 end
