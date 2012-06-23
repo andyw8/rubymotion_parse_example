@@ -24,10 +24,6 @@ class ParseObject
     @object.objectId
   end
 
-  def self.item_at_index(index)
-    store.all[index]
-  end
-
   def name
     if @object['name'] && @object['name'] != ''
       @object['name']
