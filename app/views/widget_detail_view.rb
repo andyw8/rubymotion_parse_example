@@ -12,7 +12,7 @@ class WidgetDetailView < UIView
     name_text_field.becomeFirstResponder
 
     if @item
-      @name_text_field.text = @item['name'] # TODO add .name method?
+      @name_text_field.text = @item.name
     end
   end
 
