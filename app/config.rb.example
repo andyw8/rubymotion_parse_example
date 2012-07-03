@@ -1,7 +1,11 @@
 module Config
-  PARSE_APP_ID = "..."
-  PARSE_CLIENT_KEY = "..."
+  module Parse
+    AppId = "..."
+    ClientKey = "..."
+  end
 
-  TWITTER_CONSUMER_KEY = "..."
-  TWITTER_CONSUMER_SECRET = "..."
+  module Twitter
+    ConsumerKey = "..."
+    ConsumerSecret = "..."
+  end
 end
