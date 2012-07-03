@@ -5,8 +5,7 @@ module DisplaysLoginController
       PFLogInFieldsSignUpButton |
       PFLogInFieldsPasswordForgotten |
       PFLogInFieldsFacebook |
-      PFLogInFieldsTwitter |
-      PFLogInFieldsDismissButton
+      PFLogInFieldsTwitter
 
     login_controller = PFLogInViewController.alloc.init.tap do |lc|
       lc.delegate = self
