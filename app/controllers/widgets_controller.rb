@@ -15,6 +15,8 @@ class WidgetsController < PFQueryTableViewController
 
   def viewDidLoad
     super
+    # TODO better to have a current_user object?
+    display_login_controller unless User.signed_in?
     self.clearsSelectionOnViewWillAppear = false
     self.title = "Widgets"
     navigationItem.rightBarButtonItem = addButtonItem
