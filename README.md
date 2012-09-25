@@ -15,11 +15,12 @@ I've created this project to refamiliarise myself with iOS, to learn RubyMotion 
 
 ## Features
 
-* Authentication by Facebook, Twitter or Parse
+* Authentication by Twitter or Parse
 * Pull-to-refresh
 
 ## TODO
 
+* Facebook support
 * Handle network errors
 * Using asynchronus calls
 * Implement updating and deleting items
