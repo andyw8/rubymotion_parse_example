@@ -12,7 +12,7 @@ Motion::Project::App.setup do |app|
     'app/lib/controller_operations/show.rb',
     'app/lib/reuseable_cell.rb']
 
-  ## -- Parse ## 
+  ## -- Parse ##
 
   app.libs << '/usr/lib/libz.1.1.3.dylib'
   app.frameworks += [
