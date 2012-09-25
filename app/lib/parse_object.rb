@@ -57,6 +57,14 @@ class ParseObject
     store.expire_cache
   end
 
+  def self.create(params)
+    # TODO move into WidgetStore?
+    new_object = PFObject.objectWithClassName(self.to_s)
+    params.each { |key, val| new_object[key] = val }
+    new_object.ACL = PFACL.ACLWithUser(PFUser.currentUser)
+    new_object.saveInBackground
+  end
+
   private
 
   def store

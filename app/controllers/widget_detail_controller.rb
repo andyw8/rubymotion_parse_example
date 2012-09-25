@@ -26,7 +26,8 @@ class WidgetDetailController < UIViewController
       @item.name = @detail_view.name_text_field.text
       @item.save
     else
-      store.create('name' => @detail_view.name_text_field.text)
+      # TODO move this into other class
+      parse_class.create(name: @detail_view.name_text_field.text)
     end
     dismissViewControllerAnimated(true, completion:@dismiss_block)
   end
@@ -64,7 +65,7 @@ class WidgetDetailController < UIViewController
   end
 
   def viewDidLoad
-    done_button.enabled = false
+    done_button.enabled = false # wrong for editing?
     @detail_view.name_text_field.when(UIControlEventEditingChanged) do
       done_button.enabled = @detail_view.name_text_field.text != ''
     end
