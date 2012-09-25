@@ -1,5 +1,9 @@
 $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project'
+
+require 'bundler'
+Bundler.require
+
 require 'bubble-wrap'
 
 Motion::Project::App.setup do |app|
