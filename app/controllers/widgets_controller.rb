@@ -23,7 +23,7 @@ class WidgetsController < PFQueryTableViewController
     navigationItem.leftBarButtonItem = self.editButtonItem
   end
 
-  def tableView(tableView, commitEditingStyle:nil, forRowAtIndexPath:indexPath)
+  def tableView(tableView, commitEditingStyle:editingstyle, forRowAtIndexPath:indexPath)
     # We only care about deletion, so no need to check editingStyle
     object_to_delete = self.objectAtIndex(indexPath)
     block = lambda do |result, error|

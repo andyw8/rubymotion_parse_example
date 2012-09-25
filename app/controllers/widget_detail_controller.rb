@@ -4,10 +4,6 @@ class WidgetDetailController < UIViewController
   attr_writer :item
   attr_writer :dismiss_block
 
-  def parse_class
-    Widget
-  end
-
   def loadView
     # Based on code from http://cps.liridesce.com/?p=100
     super
@@ -26,8 +22,9 @@ class WidgetDetailController < UIViewController
       @item.name = @detail_view.name_text_field.text
       @item.save
     else
-      # TODO move this into other class
-      parse_class.create(name: @detail_view.name_text_field.text)
+      w = Widget.new
+      w.name = @detail_view.name_text_field.text
+      w.saveEventually
     end
     dismissViewControllerAnimated(true, completion:@dismiss_block)
   end
@@ -77,11 +74,5 @@ class WidgetDetailController < UIViewController
     else
       self.title = "New Widget"
     end
-  end
-
-  private
-
-  def store
-    WidgetStore.shared_store
   end
 end

@@ -3,7 +3,6 @@ module ControllerOperations
     def addItem
       dc = detail_controller
       dc.dismiss_block = lambda do
-        model_class.expire_cache
         self.tableView.reloadData
       end
       self.presentViewController(dc, animated:true, completion:nil)

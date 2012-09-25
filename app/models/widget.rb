@@ -1,14 +1,5 @@
-class Widget < ParseObject
-  def self.store
-    WidgetStore.shared_store
-  end
+class Widget
+  include ParseModel::Model
 
-  # TODO shouldn't this be in store?
-  def name=(name)
-    @object['name'] = name
-  end
-
-  def delete
-    @object.delete
-  end
+  fields :name
 end
