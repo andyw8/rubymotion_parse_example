@@ -1,6 +1,6 @@
 module SignupViewControllerDelegate
   def signUpViewControlle(signUpController, didSignUpUser:user)
-    dismissModalViewControllerAnimated true 
+    dismissModalViewControllerAnimated true
   end
 
   def signUpViewControllerDidCancelSignUp(signUpController)
