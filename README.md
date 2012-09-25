@@ -11,9 +11,27 @@ I've created this project to refamiliarise myself with iOS, to learn RubyMotion 
 
 * I'm using the MVCS pattern described in the [iOS Programming: The Big Nerd Ranch Guide]
 * I'm aiming for a good balance of Ruby/Cocoa idioms (no metaprogramming or DSLs yet)
+* I've kept the app loosely coupled to Parse, so that if you wanted to a different backend...
+
+## Features
+
+* Authentication by Facebook, Twitter or Parse
+* Pull-to-refresh
 
 ## TODO
 
 * Handle network errors
 * Using asynchronus calls
 * Implement updating and deleting items
+* Add authentication
+* KVO?
+* reordering
+* iPad support (master/detail view)
+* TableViewCell
+* Proper user handling
+* ios 6 enhancements?
+* 'loading' animation?
+* cell class in config (subclass pf tableviewcell)
+* rename 'instantiate' method
+* menu after selecting an item
+* push notifications?
