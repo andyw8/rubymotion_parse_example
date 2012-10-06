@@ -32,7 +32,12 @@ class WidgetsController < PFQueryTableViewController
   end
 
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
-    show Widget.new(self.objectAtIndex(indexPath))
+    selected_object = self.objectAtIndex(indexPath)
+    if editing?
+      edit selected_object
+    else
+      show selected_object
+    end
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath, object:object)
