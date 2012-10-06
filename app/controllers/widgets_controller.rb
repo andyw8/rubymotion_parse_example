@@ -32,7 +32,7 @@ class WidgetsController < PFQueryTableViewController
   end
 
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
-    show self.objectAtIndex(indexPath)
+    show Widget.new(self.objectAtIndex(indexPath))
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath, object:object)

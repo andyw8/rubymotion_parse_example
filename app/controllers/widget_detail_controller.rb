@@ -14,26 +14,33 @@ class WidgetDetailController < Formotion::FormController
         row.value = @item['name'] if @item
       end
     end
-    form.on_submit { self.submit }
+    form.on_submit do
+      if @item
+        self.update
+      else
+        self.create
+      end
+    end
     super.initWithForm(form)
   end
 
   def viewDidLoad
     super
     if @item.nil?
-      self.navigationItem.rightBarButtonItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemSave, target:self, action:'submit')
+      self.navigationItem.rightBarButtonItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemSave, target:self, action:'create')
     end
   end
 
-  def submit
-    if @item
-      @item['name'] = form.render[:name]
-      @item.saveEventually
-    else
-      w = Widget.new # TODO can I use .new(name: ...) here?
-      w.name = form.render[:name]
-      w.saveEventually
-    end
+  def update
+    @item.name = form.render[:name]
+    @item.saveEventually
+    parentViewController.dismissModalViewControllerAnimated(true)
+  end
+
+  def create
+    widget = Widget.new # TODO can I use .new(name: ...) here?
+    widget.name = form.render[:name]
+    widget.saveEventually
     parentViewController.dismissModalViewControllerAnimated(true)
   end
 end
