@@ -1,7 +1,12 @@
+GIT
+  remote: git://github.com/adelevie/ParseModel.git
+  revision: 92626e598bb02126f539f1a46cabef745b77926e
+  specs:
+    ParseModel (0.0.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
-    ParseModel (0.0.6)
     bubble-wrap (1.1.4)
     formotion (1.1.1)
       bubble-wrap (>= 1.1.4)
@@ -10,5 +15,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ParseModel
+  ParseModel!
   formotion (~> 1.1.1)

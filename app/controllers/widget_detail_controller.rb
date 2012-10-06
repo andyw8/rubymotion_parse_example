@@ -1,5 +1,6 @@
 class WidgetDetailController < Formotion::FormController
-  def initWithItem(item)
+  def initWithItem(item, opts = {})
+    @editing = true if opts[:edit]
     @item = item
     init
   end
@@ -16,9 +17,9 @@ class WidgetDetailController < Formotion::FormController
     end
     form.on_submit do
       if @item
-        self.update
+        update
       else
-        self.create
+        create
       end
     end
     super.initWithForm(form)
@@ -26,9 +27,17 @@ class WidgetDetailController < Formotion::FormController
 
   def viewDidLoad
     super
-    if @item.nil?
-      self.navigationItem.rightBarButtonItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemSave, target:self, action:'create')
+    if @item
+      title = "Show Widget"
+      navigationItem.rightBarButtonItem = self.editButtonItem
+    else
+      title = "New Widget"
+      navigationItem.rightBarButtonItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemSave, target:self, action:'create')
     end
+  end
+
+  def setEditing(editing, animated:animated)
+    self.title = "Editing!"
   end
 
   def update
@@ -38,8 +47,7 @@ class WidgetDetailController < Formotion::FormController
   end
 
   def create
-    widget = Widget.new # TODO can I use .new(name: ...) here?
-    widget.name = form.render[:name]
+    widget = Widget.new(name: form.render[:name])
     widget.saveEventually
     parentViewController.dismissModalViewControllerAnimated(true)
   end
