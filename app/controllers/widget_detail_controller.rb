@@ -14,9 +14,7 @@ class WidgetDetailController < Formotion::FormController
         row.value = @item['name'] if @item
       end
     end
-    form.on_submit do
-      self.submit
-    end
+    form.on_submit { self.submit }
     super.initWithForm(form)
   end
 
