@@ -6,10 +6,10 @@ class WidgetsController < PFQueryTableViewController
   include ReuseableCell
 
   def initWithStyle(style)
-    super.tap do |vc|
-      vc.className = "Widget"
-      vc.pullToRefreshEnabled = true
-      vc.paginationEnabled = false
+    super.tap do |view_controller|
+      view_controller.className = "Widget"
+      view_controller.pullToRefreshEnabled = true
+      view_controller.paginationEnabled = false
     end
   end
 
@@ -25,25 +25,14 @@ class WidgetsController < PFQueryTableViewController
 
   def tableView(tableView, commitEditingStyle:editingstyle, forRowAtIndexPath:indexPath)
     # We only care about deletion, so no need to check editingStyle
-    object_to_delete = self.objectAtIndex(indexPath)
-    block = lambda do |result, error|
-      loadObjects
-    end
-    object_to_delete.deleteInBackgroundWithBlock(block)
-    self.objects.delete object_to_delete
-    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:UITableViewRowAnimationFade)
+    object_to_delete = objectAtIndex(indexPath)
+    object_to_delete.deleteInBackground
+    objects.delete object_to_delete
+    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:UITableViewRowAnimationFade)
   end
 
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
     show self.objectAtIndex(indexPath)
-  end
-
-  def detail_controller
-    WidgetDetailController.alloc.init
-  end
-
-  def model_class
-    Widget
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath, object:object)
