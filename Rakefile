@@ -31,6 +31,6 @@ Motion::Project::App.setup do |app|
   app.name = 'Parse Test'
   app.vendor_project('vendor/Parse.framework',
                      :static,
-                     :products => ['Parse'],
-                     :headers_dir => 'Headers')
+                     products: ['Parse'],
+                     headers_dir: 'Headers')
 end

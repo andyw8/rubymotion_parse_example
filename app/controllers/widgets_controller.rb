@@ -36,7 +36,7 @@ class WidgetsController < PFQueryTableViewController
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath, object:object)
-    reuseable_cell(:style => UITableViewCellStyleSubtitle).tap do |cell|
+    reuseable_cell(style: UITableViewCellStyleSubtitle).tap do |cell|
       cell.textLabel.text = object.objectForKey("name") # TODO reuse from above?
       cell.detailTextLabel.text = object.createdAt.to_s
     end
