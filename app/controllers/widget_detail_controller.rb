@@ -28,9 +28,14 @@ class WidgetDetailController < Formotion::FormController
   end
 
   def submit
-    w = Widget.new # TODO can I use .new(name: ...) here?
-    w.name = form.render[:name]
-    w.saveEventually
+    if @item
+      @item['name'] = form.render[:name]
+      @item.saveEventually
+    else
+      w = Widget.new # TODO can I use .new(name: ...) here?
+      w.name = form.render[:name]
+      w.saveEventually
+    end
     parentViewController.dismissModalViewControllerAnimated(true)
   end
 end
