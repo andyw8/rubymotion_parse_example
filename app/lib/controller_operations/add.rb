@@ -1,11 +1,8 @@
 module ControllerOperations
   module Add
     def addItem
-      dc = detail_controller
-      dc.dismiss_block = lambda do
-        self.tableView.reloadData
-      end
-      self.presentViewController(dc, animated:true, completion:nil)
+      @controller = WidgetDetailController.alloc.init # TODO is this the same as new?
+      self.navigationController.pushViewController(@controller, animated: true)
     end
 
     def addButtonItem

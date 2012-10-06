@@ -6,6 +6,7 @@ Bundler.require
 
 require 'bubble-wrap'
 require 'ParseModel'
+require 'formotion'
 
 Motion::Project::App.setup do |app|
   app.name = 'Parse Example'
